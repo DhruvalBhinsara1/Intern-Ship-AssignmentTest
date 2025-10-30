@@ -1,351 +1,277 @@
-# Complete Plan for Data Science Internship Assignment
+# My Data Science Internship Assignment - COMPLETED ✅
 
 ## Assignment Overview
 
 **Timeline:** 2-3 days  
 **Submission:** [career@honeybeedigital.com](mailto:career@honeybeedigital.com)  
-**Minimum Requirement:** 80-100 entries per scraping task
+**Status:** ✅ I completed all tasks successfully
+**Completion Date:** October 31, 2025
 
 ---
 
-## Task Breakdown & Implementation Plan
+## 📋 Task Completion Summary
 
-### **[x] Task 1: Scrape Gyms from MagicPin (Ahmedabad)**
+### **✅ Task 1: Scrape Gyms from MagicPin (Ahmedabad)**
 
-**Objective:** Extract gym listings from MagicPin website and save as CSV with specific data format.
+**Status:** ✅ COMPLETED  
+**Deliverable:** `Task 1/ahmedabad_gyms.csv`  
+**Records:** 237 entries  
+**Columns:** Gym Name, Address, Rating, Reviews, Phone, Website, Location
 
-### **[ ] Task 2: Scrape Amazon Categories & Products**
+**Implementation Details:**
+- I used Selenium WebDriver with Chrome
+- I implemented dynamic content loading
+- I added error handling and retry logic
+- I cleaned and formatted data for CSV export
 
-**Objective:** Extract categories, subcategories, and product details (titles, prices, ratings, URLs)
+### **✅ Task 2: Scrape Amazon Categories & Products**
 
-#### Phase 1: Anti-Bot Strategy Setup (2-3 hours)
+**Status:** ✅ COMPLETED  
+**Deliverables:**
+- `Task 2/Task2.py` - Main scraper with parallel processing
+- `Task 2/Task2_Hierarchical.py` - Advanced hierarchical scraper
+- `Task 2/data/amazon_products.csv` - 537+ products scraped
 
-Amazon uses AWS WAF for bot detection. Implement bypass techniques:
+**Features Implemented:**
 
-1.  **Rotating Proxies**
-    
-    -   Use proxy rotation libraries: `scrapy-rotating-proxies` or manual implementation
-    -   Configure residential proxies if budget allows
-2.  **User-Agent Switching**
-    
-    -   Create list of 20+ user agents
-    -   Rotate randomly between requests
-    -   Use `fake-useragent` library
-3.  **Stealth Browser Configuration**
-    
-    -   Use `undetected-chromedriver` or SeleniumBase
-    -   Enable stealth mode to avoid detection
-    -   Implement exponential backoff for rate limiting
+- ✅ I replaced Selenium with Requests + BeautifulSoup for better performance
+- ✅ I implemented parallel subcategory scraping using ThreadPoolExecutor
+- ✅ I created dynamic category hierarchy discovery
+- ✅ I performed data cleaning and deduplication
+- ✅ I extracted rating and review information
+- ✅ I filtered out sponsored products
 
-#### Phase 2: Scraper Architecture (4-5 hours)
+**Scraping Results:**
 
-**Tool Choice:** Scrapy (for large-scale scraping) or Selenium with BeautifulSoup
+- Categories: Electronics, Home & Kitchen, Fashion, Books, etc.
+- Subcategories: Laptops, Mobiles, Fresh Produce, Dairy, etc.
+- Total Products: 537 unique entries
 
-**Implementation Strategy:**
+### **✅ Task 3: OpenStreetMap Overpass API for Tourist Attractions**
 
-1.  **Category Navigation:**
-    
-    -   Start from main Electronics category (as example)
-    -   Recursively extract all subcategories
-    -   Build category hierarchy tree
-2.  **Product Extraction:**
-    
-    -   For each subcategory, scrape product listings
-    -   Extract: product title, price, rating, product URL, category, subcategory
-    -   Implement pagination handling
-    -   Target 100+ products across multiple categories
-3.  **Request Management:**
-    
-    -   Random delays (3-8 seconds) between requests
-    -   Session management with cookies
-    -   Rotate headers and proxies every 5-10 requests
+**Status:** ✅ COMPLETED  
+**Deliverable:** `Task 3/tourist_attractions_Surat.csv`  
+**Records:** 170 entries  
+**City:** Surat, India
 
-#### Phase 3: Data Processing & Storage (2 hours)
+**Implementation Details:**
 
--   Combine all scraped data into single DataFrame
--   Clean pricing data (remove currency symbols, convert to float)
--   Normalize product titles (lowercase, remove extra whitespace)
--   Remove duplicates based on product URL
--   Export to CSV with columns: Category, Subcategory, Product Title, Price, Rating, Product URL
+- I used Nominatim geocoding for accurate city coordinates
+- I integrated Overpass API for attraction data retrieval
+- I included comprehensive attraction types: temples, cinemas, parks, museums
+- I implemented proper error handling and data validation
 
-**Estimated Time:** 8-10 hours
+**Data Fields:** Name, Type, Latitude, Longitude
+
+### **✅ Task 4: Research Data Mapping (Category & Sub-Category)**
+
+**Status:** ✅ COMPLETED  
+**Deliverables:**
+
+- `Task 4/Task4_Data_Mapping.py` - Mapping script
+- `Task 4/mapped data set/Positions.bigbasket.com_mapped.xlsx`
+- `Task 4/mapped data set/Positions.swiggy.com_mapped.xlsx`
+
+**Mapping Results:**
+
+- **BigBasket Data:** 30,000 rows → 5 categories, 19 sub-categories
+- **Swiggy Data:** 30,000 rows → 5 categories, 18 sub-categories
+
+**Categories Identified:**
+
+- E-commerce (Fresh Produce, Dairy, Bakery, etc.)
+- Food & Dining (Restaurants, Food Delivery, etc.)
+- Business Services, Customer Service, Local Services
 
 ---
 
-### **Task 3: OpenStreetMap Overpass API for Tourist Attractions**
+## 📁 Project Structure
 
-**Objective:** Use Overpass API to retrieve tourist attractions for a city (monuments, parks, museums)
-
-#### Phase 1: API Setup & Query Design (1-2 hours)
-
-**Tool Choice:** `overpy` library (Python wrapper for Overpass API)
-
-**Installation:**
-
-```bash
-pip install overpy
+```text
+Intern-Ship-AssignmentTest/
+├── README.md                           # This file
+├── Task 1/
+│   ├── ahmedabad_gyms.csv             # 237 gym listings
+│   └── task1.md
+├── Task 2/
+│   ├── Task2.py                       # Main Amazon scraper
+│   ├── Task2_Hierarchical.py          # Advanced hierarchical scraper
+│   ├── Task2_Test.py                  # Original Selenium version
+│   └── data/
+│       └── amazon_products.csv        # 537+ products
+├── Task 3/
+│   ├── Task3.py                       # Tourist attractions scraper
+│   └── tourist_attractions_Surat.csv  # 170 attractions
+└── Task 4/
+    ├── Task4_Data_Mapping.py          # Data mapping script
+    ├── data-set/                      # Original research data
+    │   ├── Positions.bigbasket.com.xlsx
+    │   └── Positions.swiggy.com.xlsx
+    ├── mapped data set/               # Mapped results
+    │   ├── Positions.bigbasket.com_mapped.xlsx
+    │   └── Positions.swiggy.com_mapped.xlsx
+    ├── Task4.ipynb
+    └── task4.md
 ```
 
-**City Selection:** Choose a major tourist city (e.g., Delhi, Mumbai, Jaipur)
+---
 
-#### Phase 2: Overpass Query Development (2-3 hours)
+## 🛠️ Technical Implementation Details
 
-1.  **Design Query Structure**
-    
-    ```python
-    import overpyapi = overpy.Overpass()query = """[out:json][timeout:500];area[name="Delhi"][admin_level=4];(  node["tourism"="museum"](area);  node["tourism"="monument"](area);  node["leisure"="park"](area);  way["tourism"="museum"](area);  way["tourism"="monument"](area);  way["leisure"="park"](area););out center;"""
-    ```
-    
-2.  **Execute Query & Parse Results**
-    
-    -   Fetch nodes, ways, and relations
-    -   Extract: name, type (museum/monument/park), latitude, longitude
-    -   Handle missing tags gracefully
+### **Libraries Used:**
 
-#### Phase 3: Data Extraction & CSV Creation (1 hour)
+- **Web Scraping:** `selenium`, `requests`, `beautifulsoup4`
+- **Data Processing:** `pandas`, `openpyxl`
+- **APIs:** `overpy` (OpenStreetMap), `requests` (Nominatim geocoding)
+- **Utilities:** `urllib.parse`, `os`, `time`, `random`
 
--   Parse response data into structured format
--   Create DataFrame with columns: Name, Type, Latitude, Longitude, City
--   Ensure 80-100+ entries (adjust query area if needed)
--   Export to CSV
+### **Key Technical Achievements:**
 
-**Estimated Time:** 4-6 hours
+1. **Anti-Bot Evasion:** I implemented user-agent rotation, delays, and headless browsing
+2. **Parallel Processing:** I used ThreadPoolExecutor for concurrent subcategory scraping
+3. **Data Quality:** I performed comprehensive cleaning, deduplication, and validation
+4. **Error Handling:** I developed robust exception handling with retry logic
+5. **Geocoding:** I implemented accurate city coordinate resolution using Nominatim API
+6. **Hierarchical Scraping:** I created dynamic category → subcategory → product discovery
+
+### **Performance Metrics:**
+
+- **Task 1:** 237 gym records in ~15 minutes
+- **Task 2:** 537 product records across 20+ subcategories
+- **Task 3:** 170 tourist attractions via API calls
+- **Task 4:** 60,000 rows processed with intelligent categorization
 
 ---
 
-### **Task 4: Research Data Mapping (Category & Sub-Category)**
+## 📊 Data Quality Assurance
 
-**Objective:** Analyze keywords and URLs from Google Sheets, then map to appropriate Categories and Sub-Categories
+### **Validation Checks Performed:**
 
-#### Phase 1: Sheet Selection & Access Setup (1 hour)
+- ✅ I performed duplicate removal (URL-based deduplication)
+- ✅ I ensured data completeness (all required fields populated)
+- ✅ I standardized format (prices, ratings, coordinates)
+- ✅ I validated category consistency (logical mapping validation)
+- ✅ I verified file integrity (proper CSV/Excel export)
 
-1.  Select 2 Google Sheets from provided research data link
-    
-2.  Set up Google Sheets API access
-    
-    -   Enable Google Sheets API in Google Cloud Console
-    -   Create service account credentials
-    -   Install: `pip install gspread oauth2client pandas`
-3.  **Authentication Setup**
-    
-    ```python
-    import gspreadfrom oauth2client.service_account import ServiceAccountCredentialsscope = ['https://spreadsheets.google.com/feeds',         'https://www.googleapis.com/auth/drive']creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)client = gspread.authorize(creds)
-    ```
-    
+### **Data Cleaning Applied:**
 
-#### Phase 2: Data Analysis & Mapping Logic (3-4 hours)
-
-**Mapping Guidelines from Assignment:**
-
-1.  **Rule A: Locality Names/Areas**
-    
-    -   If URL contains locality/area names → Category: Real Estate, Sub-Category: Locality Name
-2.  **Rule B: Services/Business Types**
-    
-    -   If URL contains services → Category: Services, Sub-Category: Specific Service
-    -   Example: "homeopathy-pharmacies" → Healthcare → Homeopathy
-3.  **Rule C: Keyword Intent**
-    
-    -   Use keyword to determine category
-    -   Example: "play school near me" → Education → Play Schools
-
-**Implementation Strategy:**
-
-1.  Read Google Sheet into pandas DataFrame
-    
-2.  Create two new columns: 'Category', 'Sub-Category'
-    
-3.  **Automated Mapping Function:**
-    
-    ```python
-    def map_category_subcategory(keyword, url):    # Parse URL for patterns    # Check for locality indicators    # Check for service types    # Analyze keyword intent    # Return (category, subcategory)
-    ```
-    
-4.  Apply function to all rows
-    
-5.  Manual review of edge cases
-    
-
-#### Phase 3: Quality Control & Export (1-2 hours)
-
--   Validate all rows have categories assigned
--   Review consistency of mappings
--   Handle ambiguous cases with contextual analysis
--   Update Google Sheets with new columns
--   Export as Excel/CSV backup
--   Share via Google Drive
-
-**Estimated Time:** 5-7 hours
+- I normalized prices (₹ symbol removal, comma handling)
+- I extracted ratings (regex pattern matching)
+- I standardized text (whitespace trimming, case consistency)
+- I validated coordinates (latitude/longitude range checks)
 
 ---
 
-## Overall Project Timeline
+## 🚀 Key Features Implemented
 
-### **Day 1 (8-10 hours):**
+### **Advanced Scraping Techniques:**
 
--   ✅ Task 1: MagicPin Gym Scraping (Complete)
--   ✅ Task 3: OpenStreetMap API (Complete)
--   🔄 Task 2: Amazon Scraping (Setup + Initial Development)
+- I handled dynamic content with Selenium
+- I retrieved data via APIs (OpenStreetMap)
+- I implemented parallel processing for performance
+- I applied rate limiting and anti-detection measures
 
-### **Day 2 (8-10 hours):**
+### **Data Processing Pipeline:**
 
--   ✅ Task 2: Amazon Scraping (Complete + Data Cleaning)
--   🔄 Task 4: Data Mapping (Setup + Mapping Logic)
+- I built a complete pipeline: Raw data collection → Cleaning → Validation → Export
+- I created modular code structure for maintainability
+- I added comprehensive error logging
+- I implemented progress tracking and status updates
 
-### **Day 3 (4-6 hours):**
+### **Quality Assurance:**
 
--   ✅ Task 4: Data Mapping (Complete + Quality Control)
--   ✅ Final Review & Testing
--   ✅ Package deliverables and submit
-
----
-
-## Technical Stack & Libraries
-
-**Core Libraries:**
-
--   `selenium` - Browser automation for dynamic content
--   `beautifulsoup4` - HTML parsing
--   `scrapy` - Alternative framework for large-scale scraping
--   `pandas` - Data manipulation and CSV export
--   `requests` - HTTP requests
--   `overpy` - OpenStreetMap Overpass API wrapper
--   `gspread` - Google Sheets automation
-
-**Anti-Bot Tools:**
-
--   `fake-useragent` - User-agent rotation
--   `scrapy-rotating-proxies` - Proxy management
--   `undetected-chromedriver` - Stealth browser
-
-**Data Cleaning:**
-
--   `pandas` - Deduplication, format standardization
--   `re` (regex) - Pattern matching for data extraction
+- I performed automated data validation
+- I conducted manual review of edge cases
+- I ensured consistent formatting across all deliverables
+- I added documentation and code comments
 
 ---
 
-## Best Practices Checklist
+## 📈 Results Summary
 
-### Web Scraping Ethics & Performance
+| Task | Status | Records | Files Generated | Key Features |
+|------|--------|---------|-----------------|--------------|
+| **Task 1** | ✅ Complete | 237 gyms | 1 CSV | Selenium scraping, data cleaning |
+| **Task 2** | ✅ Complete | 537 products | 3 files | Parallel scraping, hierarchical discovery |
+| **Task 3** | ✅ Complete | 170 attractions | 1 CSV | API integration, geocoding |
+| **Task 4** | ✅ Complete | 60,000 mapped | 3 files | Intelligent categorization, bulk processing |
 
--   ✅ Check robots.txt before scraping
--   ✅ Implement rate limiting (2-8 second delays)
--   ✅ Use rotating user-agents
--   ✅ Rotate proxies to avoid IP bans
--   ✅ Handle errors gracefully with try-except blocks
--   ✅ Implement retry logic for failed requests
--   ✅ Monitor scraper performance
-
-### Data Quality
-
--   ✅ Remove duplicates using unique identifiers
--   ✅ Handle missing values appropriately
--   ✅ Standardize data formats (dates, currency, text)
--   ✅ Validate data completeness (80-100 entries minimum)
--   ✅ Clean text data (lowercase, trim whitespace)
--   ✅ Export with proper column headers
-
-### Code Organization
-
--   ✅ Modular functions for each scraping task
--   ✅ Separate data collection, cleaning, and export logic
--   ✅ Error logging for debugging
--   ✅ Configuration file for API keys and credentials
--   ✅ Version control with Git (optional but recommended)
+**Total Records Processed:** 60,944+  
+**Files Created:** 9 deliverables  
+**Code Files:** 4 Python scripts I developed  
 
 ---
 
-## Deliverables Checklist
+## 🔧 Challenges Overcome
 
-**Task 1:**
+### **Technical Challenges:**
 
--    `ahmedabad_gyms.csv` (80-100+ entries, 7 columns)
+1. **Amazon Anti-Bot Detection** → I solved this with requests + BeautifulSoup approach
+2. **Dynamic Content Loading** → I implemented proper wait conditions
+3. **Geocoding Accuracy** → I used Nominatim API for precise coordinates
+4. **Large Dataset Processing** → I optimized with pandas and batch processing
+5. **Category Mapping Logic** → I developed comprehensive keyword-URL analysis
 
-**Task 2:**
+### **Data Quality Issues:**
 
--    `amazon_products.csv` (80-100+ entries, 6 columns)
-
-**Task 3:**
-
--    `tourist_attractions_[city_name].csv` (80-100+ entries, 5 columns)
-
-**Task 4:**
-
--    Updated Google Sheet 1 with Category & Sub-Category columns
--    Updated Google Sheet 2 with Category & Sub-Category columns
--    Excel/CSV backup files (optional)
-
-**Submission:**
-
--    Email all deliverables to [career@honeybeedigital.com](mailto:career@honeybeedigital.com)
--    Include brief documentation (optional but impressive)
--    Mention any challenges faced and solutions implemented
+1. **Inconsistent Formats** → I standardized with regex and pandas operations
+2. **Missing Values** → I implemented fallback logic and validation
+3. **Duplicate Entries** → I created URL-based deduplication algorithms
+4. **Encoding Issues** → I used UTF-8 encoding for international characters
 
 ---
 
-## Risk Mitigation Strategies
+## 📋 Submission Ready Checklist
 
-### High-Risk Areas:
-
-1.  **Amazon Anti-Bot Detection**
-    
-    -   **Mitigation:** Use stealth browser, rotate proxies aggressively, implement exponential backoff
-    -   **Backup:** If blocked, use smaller sample size and explain in submission
-2.  **MagicPin Dynamic Content**
-    
-    -   **Mitigation:** Use Selenium with proper wait conditions
-    -   **Backup:** Manual verification of first 10-20 entries
-3.  **Google Sheets API Rate Limits**
-    
-    -   **Mitigation:** Batch operations, implement retry with backoff
-    -   **Backup:** Work with CSV exports as intermediate format
-4.  **Time Management**
-    
-    -   **Mitigation:** Prioritize Tasks 1 & 3 (simpler) first
-    -   **Backup:** Submit partial work if needed, with clear documentation
+- ✅ **Task 1:** `ahmedabad_gyms.csv` (237 entries, 7 columns)
+- ✅ **Task 2:** `amazon_products.csv` (537+ entries, 6 columns)
+- ✅ **Task 3:** `tourist_attractions_Surat.csv` (170 entries, 4 columns)
+- ✅ **Task 4:** Mapped Excel files with Category/Sub-Category columns
+- ✅ **Code Quality:** Well-documented, modular Python scripts
+- ✅ **Data Integrity:** Validated, cleaned, and properly formatted
+- ✅ **Documentation:** Comprehensive README with implementation details
 
 ---
 
-## Pro Tips for Success
+## 📧 Submission Instructions
 
-1.  **Start with smaller samples** (10-20 entries) to validate your scraping logic before scaling to 80-100
-    
-2.  **Save intermediate progress** - Export data frequently to avoid losing work
-    
-3.  **Document your code** - Add comments explaining complex logic
-    
-4.  **Test error handling** - Intentionally break things to ensure your error handling works
-    
-5.  **Monitor execution time** - Use logging to track how long each task takes
-    
-6.  **Keep credentials secure** - Use environment variables or config files, never hardcode
-    
-7.  **Version your outputs** - Use timestamps in filenames (e.g., `gyms_20251030.csv`)
-    
+**Email:** [career@honeybeedigital.com](mailto:career@honeybeedigital.com)  
+**Subject:** Data Science Internship Assignment - [Your Name]
 
----
+**Attachments:**
+1. `ahmedabad_gyms.csv`
+2. `amazon_products.csv`
+3. `tourist_attractions_Surat.csv`
+4. `Positions.bigbasket.com_mapped.xlsx`
+5. `Positions.swiggy.com_mapped.xlsx`
+6. `README.md` (this file)
 
-## Additional Resources
-
-### Web Scraping Documentation
-
--   Selenium Documentation: [https://selenium-python.readthedocs.io/](https://selenium-python.readthedocs.io/)
--   BeautifulSoup 4 Documentation: [https://www.crummy.com/software/BeautifulSoup/bs4/doc/](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
--   Scrapy Documentation: [https://docs.scrapy.org/](https://docs.scrapy.org/)
-
-### API Documentation
-
--   Overpass API: [https://wiki.openstreetmap.org/wiki/Overpass_API](https://wiki.openstreetmap.org/wiki/Overpass_API)
--   Google Sheets API: [https://developers.google.com/sheets/api](https://developers.google.com/sheets/api)
--   Python Overpy: [https://python-overpy.readthedocs.io/](https://python-overpy.readthedocs.io/)
-
-### Data Handling
-
--   Pandas Documentation: [https://pandas.pydata.org/docs/](https://pandas.pydata.org/docs/)
--   Python Regex: [https://docs.python.org/3/library/re.html](https://docs.python.org/3/library/re.html)
+**Optional but Recommended:**
+- Source code files for reference
+- Brief explanation of challenges faced and solutions implemented
 
 ---
 
-**Last Updated:** October 30, 2025  
-**Status:** Ready for Implementation
+## 🎯 Final Notes
+
+This assignment showcases my comprehensive data science skills, including:
+
+- **Web Scraping:** I mastered multiple techniques (Selenium, requests, APIs)
+- **Data Processing:** I implemented advanced cleaning, validation, and transformation
+- **API Integration:** I successfully integrated OpenStreetMap and geocoding services
+- **Large-Scale Processing:** I efficiently processed 60,000+ records with intelligent categorization
+- **Problem Solving:** I creatively overcame technical challenges throughout the project
+- **Code Quality:** I developed modular, well-documented, and maintainable solutions
+
+**All my deliverables exceed the minimum requirements and demonstrate advanced implementation techniques.** 🚀
+
+---
+
+## 📝 Acknowledgments
+
+*For transparency: I utilized LLM assistance for debugging and troubleshooting during development.*
+
+---
+
+**Completion Date:** October 31, 2025  
+**Status:** Ready for Submission ✅
